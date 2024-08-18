@@ -96,9 +96,9 @@ apptheme <- function() {
 cardcolor <- function(suit) {
   
   if(suit %in% c("Hearts", "Diamonds")) {
-    'background-color: #f7f7f7!important; color: #C8102E;'
+    'background-color: #f7f7f7!important; color: #C8102E; width:100px;'
   } else {
-    'background-color: #f7f7f7!important; color: #000000;'
+    'background-color: #f7f7f7!important; color: #000000; width:100px;'
   }
   
   
@@ -350,8 +350,8 @@ dealerCardUI <- function(dealer) {
         style = cardcolor(dealer$firstcard$Suit),
         title = dealer$firstcard$Suit,
         value = dealer$firstcard$Value,
-        showcase = bsicons::bs_icon(paste0("suit-", dealer$firstcard$Icon, "-fill")),
-        style = "display: inline-block; margin-right: 10px;"
+        showcase = bsicons::bs_icon(paste0("suit-", dealer$firstcard$Icon, "-fill"))
+        #style = "display: inline-block; margin-right: 10px;"
       )
     )
     all_cards_ui <- c(first_card_ui)
@@ -361,8 +361,8 @@ dealerCardUI <- function(dealer) {
           style = cardcolor(dealer$secondcard$Suit),
           title = dealer$secondcard$Suit,
           value = dealer$secondcard$Value,
-          showcase = bsicons::bs_icon(paste0("suit-", dealer$secondcard$Icon, "-fill")),
-          style = "display: inline-block; margin-right: 10px;"
+          showcase = bsicons::bs_icon(paste0("suit-", dealer$secondcard$Icon, "-fill"))
+          #style = "display: inline-block; margin-right: 10px;"
         )
       )
       total_ui <- list(
@@ -381,23 +381,23 @@ dealerCardUI <- function(dealer) {
           title = card$Suit,
           value = card$Value,
           showcase = bsicons::bs_icon(paste0("suit-", card$Icon, "-fill")),
-          style = "display: inline-block; margin-right: 10px;"
+          #style = "display: inline-block; margin-right: 10px;"
         )
       })
       all_cards_ui <- c(first_card_ui, second_card_ui, hit_cards_ui, total_ui)
     }
   }
-  div(style = "display: flex;", all_cards_ui)
+  div(style = "display: flex; flex-direction: row;", all_cards_ui)
 }
 
 playerCardUI <- function(player, input) {
   bet_ui <- list(
     bslib::value_box(
-      style = 'background-color: #DAA520!important; color: #0D6220;',
+      style = 'background-color: #DAA520!important; color: #0D6220; width:100px;',
       title = "Bet",
       value = input$playerbetamount,
-      showcase = bsicons::bs_icon("coin"),
-      style = "display: inline-block; margin-right: 10px;"
+      showcase = bsicons::bs_icon("coin")
+      #style = "display: inline-block; margin-right: 10px;"
     )
   )
   if (!is.null(player$secondcard)) {
@@ -406,24 +406,24 @@ playerCardUI <- function(player, input) {
         style = cardcolor(player$firstcard$Suit),
         title = player$firstcard$Suit,
         value = player$firstcard$Value,
-        showcase = bsicons::bs_icon(paste0("suit-", player$firstcard$Icon, "-fill")),
-        style = "display: inline-block; margin-right: 10px;"
+        showcase = bsicons::bs_icon(paste0("suit-", player$firstcard$Icon, "-fill"))
+        #style = "display: inline-block; margin-right: 10px;"
       ),
       bslib::value_box(
         style = cardcolor(player$secondcard$Suit),
         title = player$secondcard$Suit,
         value = player$secondcard$Value,
-        showcase = bsicons::bs_icon(paste0("suit-", player$secondcard$Icon, "-fill")),
-        style = "display: inline-block; margin-right: 10px;"
+        showcase = bsicons::bs_icon(paste0("suit-", player$secondcard$Icon, "-fill"))
+        #style = "display: inline-block; margin-right: 10px;"
       )
     )
     all_cards_ui <- c(bet_ui, playing_cards_ui)
     total_ui <- list(
       bslib::value_box(
-        style = 'background-color: #DAA520!important; color: #0D6220;',
+        style = 'background-color: #DAA520!important; color: #0D6220; width:175px;',
         title = "Total",
-        value = player$total,
-        style = "display: inline-block; margin-right: 10px;"
+        value = player$total
+        #style = "display: inline-block; margin-right: 10px;"
       )
     )
     all_cards_ui <- c(bet_ui, playing_cards_ui, total_ui)
@@ -433,20 +433,20 @@ playerCardUI <- function(player, input) {
           style = cardcolor(card$Suit),
           title = card$Suit,
           value = card$Value,
-          showcase = bsicons::bs_icon(paste0("suit-", card$Icon, "-fill")),
-          style = "display: inline-block; margin-right: 10px;"
+          showcase = bsicons::bs_icon(paste0("suit-", card$Icon, "-fill"))
+          #style = "display: inline-block; margin-right: 10px;"
         )
       })
       all_cards_ui <- c(bet_ui, playing_cards_ui, hit_cards_ui, total_ui)
     }
-    div(style = "display: flex;", all_cards_ui)
+    div(style = "display: flex; flex-direction: row;", all_cards_ui)
   }
 }
 
 buyinUI <- function(player) {
   div(id="bankroll",
       bslib::value_box(
-        style = 'background-color: #DAA520!important; color: #0D6220;',
+        style = 'background-color: #DAA520!important; color: #0D6220; width:100px;',
         title = "Current Bankroll",
         value = player$buyin,
         showcase = bsicons::bs_icon("currency-dollar")

@@ -60,9 +60,9 @@
 }
       cardcolor <- function(suit) {
   if(suit %in% c("Hearts", "Diamonds")) {
-    'background-color: #f7f7f7!important; color: #C8102E;'
+    'background-color: #f7f7f7!important; color: #C8102E; width:100px;'
   } else {
-    'background-color: #f7f7f7!important; color: #000000;'
+    'background-color: #f7f7f7!important; color: #000000; width:100px;'
   }}
     #modals
       noBuyinModal <- function() {
